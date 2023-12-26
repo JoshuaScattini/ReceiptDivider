@@ -95,7 +95,7 @@ def setup_canvas_content(current_page):
     elif current_page == "splitter":
         # Initialize global variables
         global items
-        itemsBought, total = grabItemsAndPrice(file1)
+        itemsBought, total = grab_items_and_price(file1)
         items = itemsBought
 
         # Create a variable for spacing between labels and dictionaries for item categorization
@@ -106,7 +106,8 @@ def setup_canvas_content(current_page):
         selected_item = {}
 
         # Create labels and text on the canvas
-        my_canvas.create_text(50, 135, text="Item\t\t\t\t       Price", font=("Helvetica", 12), fill="black", anchor="w")
+        my_canvas.create_text(50, 135, text="Item", font=("Helvetica", 12), fill="black", anchor="w")
+        my_canvas.create_text(375, 135, text="Price ($)", font=("Helvetica", 12), fill="black", anchor="w")
         my_canvas.create_text(465, 135, text="Shopper 1", font=("Helvetica", 9), fill="black", anchor="w")
         my_canvas.create_text(550, 135, text="Both", font=("Helvetica", 9), fill="black", anchor="w")
         my_canvas.create_text(605, 135, text="Shopper 2", font=("Helvetica", 9), fill="black", anchor="w")
@@ -170,6 +171,12 @@ def setup_canvas_content(current_page):
             radio_button_2.select()
 
             label_spacer += 40
+
+        my_canvas.create_text(340, 165 + label_spacer, text='Total: ', font=("Helvetica", 10), fill="black",
+                                anchor="w")
+        
+        my_canvas.create_text(380, 165 + label_spacer, text='$'+total, font=("Helvetica", 10), fill="black",
+                                anchor="w")
 
         label_spacer += 100
 
@@ -258,15 +265,15 @@ def submit_click(request_page):
 
 # Create the root window
 root = customtkinter.CTk()
-root.title("Woolworths Receipt Splitter")
+root.title("Receipt Divider")
 root.geometry("700x700")
 
 # Create a scrollable frame
 main_frame = CTkScrollableFrame(root)
 main_frame.pack(fill="both", expand=TRUE, anchor="center")  # Use anchor="center" to center the frame
 
-# Load Woolworth's logo image
-Icon_Image = PhotoImage(file="Images\Icon_Split.png")
+# Load Receipt Icon_logo image
+Icon_Image = PhotoImage(file="ReceiptDivider\Images\Icon_Split.png")
 
 # Create a canvas
 my_canvas = customtkinter.CTkCanvas(main_frame)
